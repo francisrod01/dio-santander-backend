@@ -1,14 +1,33 @@
 package com.project.bootcamp.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /** Data Transfer Object **/
 public class StockDTO {
 
     private Long id;
+
+    @NotNull
+    @NotEmpty
     private String name;
+
+    @NotNull
+    @DecimalMin(value = "0.00")
+    @Digits(integer = 6, fraction = 2)
     private Double price;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate date;
+
+    @NotNull
+    @Digits(integer = 3, fraction = 2)
     private Double variation;
 
     public Long getId() {
