@@ -10,6 +10,8 @@ Before start running the project, you need to prepare your workspace environment
 
 - Set up the OpenJdk 16 in your pc
 - Install the IntelliJ IDEA
+- Install Docker in your Operation System
+- Download and set up the PostgreSQL database
 
 After that, start by running on a terminal:
 
@@ -74,3 +76,45 @@ If everything goes right, you should see this output:
 2021-05-29 05:47:46.581  INFO 1405040 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
 ```
 The server is now running on port 8080
+
+## Set up the database using Docker
+
+```bash
+~$ docker run --name dio_postgresql -e POSTGRES_PASSWORD=dio_postgres -d -p 5432:5432 postgres
+```
+An explanation about the command above:
+
+- `dio_postgresql` is the docker image name
+- `-p:5432:5432` is mapping the image port to an external port
+- `postgres` is the database user
+- `dio_postgres` the database password
+
+### Create the needed tables
+
+```sql
+CREATE TABLE public.tb_stock (
+    id NUMERIC(9) NOT NULL,
+    "date" date NOT NULL,
+    "name" VARCHAR(100) NOT NULL,
+    price NUMERIC(8,2) NOT NULL,
+    variation NUMERIC(5,2) NOT NULL,
+    CONSTRAINT tb_stock_pkey PRIMARY KEY (id)
+);
+```
+
+Define `spring.datasource` and `spring.jpa` variables in the `application.yml` file:
+
+```yml
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc://postgresql://localhost:5432:postgres
+    username: postgres
+    password: dio_postgres
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+```
