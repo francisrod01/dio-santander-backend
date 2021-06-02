@@ -32,6 +32,11 @@ public class StockController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @GetMapping(value = "/today", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<StockDTO>> findByToday() {
+        return ResponseEntity.ok(service.findByToday());
+    }
+
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
