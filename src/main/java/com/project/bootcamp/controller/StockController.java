@@ -31,18 +31,7 @@ public class StockController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<StockDTO>> findAll() {
-        List<StockDTO> list = new ArrayList<>();
-
-        StockDTO stock1 = new StockDTO();
-        stock1.setId(1L);
-        stock1.setName("Magazine Luiza");
-        stock1.setPrice(100D);
-        stock1.setVariation(10D);
-        stock1.setDate(LocalDate.now());
-
-        list.add(stock1);
-
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

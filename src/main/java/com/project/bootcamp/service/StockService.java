@@ -1,5 +1,6 @@
 package com.project.bootcamp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.project.bootcamp.dto.StockDTO;
@@ -43,5 +44,10 @@ public class StockService {
         Stock stock = mapper.toEntity(dto);
         repository.save(stock);
         return mapper.toDto(stock);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StockDTO> findAll() {
+        return mapper.toDto(repository.findAll());
     }
 }

@@ -4,6 +4,9 @@ import com.project.bootcamp.dto.StockDTO;
 import com.project.bootcamp.model.Stock;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class StockMapper {
     public Stock toEntity(StockDTO dto) {
@@ -28,5 +31,9 @@ public class StockMapper {
         dto.setDate(stock.getDate());
 
         return dto;
+    }
+
+    public List<StockDTO> toDto(List<Stock> listStock) {
+        return listStock.stream().map(this::toDto).collect(Collectors.toList());
     }
 }
