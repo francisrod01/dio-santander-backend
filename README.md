@@ -10,7 +10,7 @@ Before start running the project, you need to prepare your workspace environment
 
 - Set up the OpenJdk 16 in your pc
 - Install the IntelliJ IDEA
-- Install Docker in your Operation System
+- Install Docker in your Operating System
 - Download and set up the PostgreSQL database
 
 After that, start by running on a terminal:
