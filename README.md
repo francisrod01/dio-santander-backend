@@ -108,7 +108,7 @@ Define `spring.datasource` and `spring.jpa` variables in the `application.yml` f
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc://postgresql://localhost:5432:postgres
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: dio_postgres
   jpa:
