@@ -4,6 +4,8 @@ Backend for the Santander dev week
 
 Author: [Francis Rodrigues](https://github.com/francisrod01)
 
+#### Running on [heroku](https://dio-santander-backend.herokuapp.com/appsantander/swagger-ui.html)
+
 ## How to run the project
 
 Before start running the project, you need to prepare your workspace environments:
@@ -118,3 +120,26 @@ spring:
     hibernate:
       ddl-auto: none
 ```
+
+## Deploy on Heroku
+
+### Creating a heroku app
+
+https://dashboard.heroku.com/new-app
+
+### Adding a Heroku Postgres
+
+Access `https://dashboard.heroku.com/apps/<your app>/resources`.  
+In the Add-ons section search for `Postgres` and select `Heroku Postgres`.
+
+![heroku resources](screenshots/heroku-resources.png)
+
+### Setting up config vars
+
+![heroku vars](screenshots/heroku-vars.png)
+
+### Setting up GitHub as Deployment
+
+Here's how to set up GitHub as automatic deployment on heroku
+
+![github deploy](screenshots/heroku-github-deploy.png)
